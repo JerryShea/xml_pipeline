@@ -10,6 +10,7 @@ Tails persisted XML file, loads XML, extracts configured subset of individual ta
 * JAXB implementation converts the XML to a Java object in memory - this takes the most up-front time but is suitable for very complex and very numerous extractions of tags from XML
 * XOM implementation uses XOM to allow execute configured xpaths against XML
 * Custom implementation that makes use of a low latency XML parser and cut-down support for an xpath subset. Low garbage and considerably lower latency and higher throughout than JAXB and XOM impls.
+
 #### Indexer
 Tails normalised file and builds an in-memory index of every normalised value.
 #### Queryer
@@ -17,6 +18,7 @@ Allows basic queries to be executed suchs as:
 
 * load xml or normalised data by ID
 * find xml or normalised data by indexed values
+
 #### ContinuousQuery
 Continuous queries e.g. count of received messages in last 10 seconds, alert where a trade's attributes have changed
 #### DBWriter
