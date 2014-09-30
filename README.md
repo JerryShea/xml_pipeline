@@ -32,4 +32,4 @@ into 1.1GB of normalised data and an index of size 500MB, while concurrently exe
 * Peter Lawrey's fantastic [Chronicle-Queue](https://github.com/OpenHFT/Chronicle-Queue)
 * [Trove collections](http://trove.starlight-systems.com/)
 
-![Component diagram](/trading/src/components.png)
+![Component diagram](components.png)
