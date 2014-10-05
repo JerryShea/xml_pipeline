@@ -1,13 +1,15 @@
+Or... how to do big data fast
+
 ## How fast?
 Below I describe an XML processing pipeline that can:
 
-* Ingest __and persist to disk__ XML at the rate of 50MB/sec, while simultaneously
-* Normalising each incoming XML (extract values from the XML, 50 tags configured as xpaths) and __persist to disk__, while simultaneously
-* Building an index over all normalised values and absorbing thousands of queries executed over normalised data
+* Ingest __and persist to disk__ XML at the rate of 150MB/sec, while simultaneously
+* Normalising each incoming XML (extract values from the XML, 50 tags configured as xpaths) and __persist results to disk__, while simultaneously
+* Building an index over all normalised values and absorbing thousands of queries executed against indexed data
 
-The test scenario described below (see soak test in README2) simulates the ingestion of 1M XML messages of average size 29K, normalisation of them,
-indexing of them and executing queries against the index continuously. The test runs in 16 minutes, converting 29G of XML
-into 1.1GB of normalised data and an index of size 500MB, while concurrently executing 3000 queries returning ~400MB of data.
+The test scenario described below (see throughput test in README2) simulates the ingestion of 1M XML messages of average size 29K, normalisation of them,
+indexing of them and executing queries against the index continuously. The test runs in 10 minutes, converting 29G of XML
+into 1.1GB of normalised data and an index of size 500MB, while concurrently executing 2000 queries returning 1.2GB of data.
 
 ## How does it work?
 ### Design Principles
