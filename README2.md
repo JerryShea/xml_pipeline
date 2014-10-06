@@ -1,14 +1,14 @@
 ## Solution
 ### Components
 #### Receiver
-Receives XML, assigns and ID, and persists to disk together with received timestamp. Core processing does not generate any garbage and streams XML
+Receives XML, assigns an ID, and persists to disk together with received timestamp. Core processing does not generate any garbage and streams XML
 straight out to disk. Very low latency and very high throughput.
 This job of this component is to "land" incoming XML to disk and make it available for downstream processing pipelines.
 #### Normaliser
 Tails persisted XML file, loads XML, extracts configured subset of individual tag values from the XML, and persists to disk in normalised file. Three versions have been implemented:
 
 * JAXB implementation converts the XML to a Java object in memory - this takes the most up-front time but is suitable for very complex and very numerous extractions of tags from XML
-* [XOM](www.xom.nu) implementation uses XOM to execute configured xpaths against XML
+* XOM implementation uses [XOM](www.xom.nu) to execute configured xpaths against XML
 * Custom implementation that makes use of a low latency XML parser and cut-down support for an xpath subset. Low garbage and considerably lower latency and higher throughout than JAXB and XOM impls. This is used for benchmark figures quoted on this page.
 
 #### Indexer
@@ -63,7 +63,7 @@ Not entirely realistic as super-fast no garbage XML generation component actuall
         * Approx 2180 queries, total of 1,634,000 rows, 749 average, avg 1,100 ms per query (because the test takes longer, more queries executed!)
 
 #### Latency test
-Generate XML at a slower rate than soak test (750 msgs/sec which is about 20MB/sec) so as to reduce load on system and ensure 
+Generate XML at a slower rate than throughput test (750 msgs/sec which is about 20MB/sec) so as to reduce load on system and ensure 
 that all components can keep up. 
 
 * EC2 c3.xlarge
@@ -76,7 +76,7 @@ that all components can keep up.
         * Queryer executes during entire test run, executing approx 4,100 queries, returning a total of 3.4G of data, (4M rows - average 970 rows per query), in an average of 260 ms per query
 
 ##### Throughput
-See below throughput for each of receiver, normaliser, indexer. Each point is 10K messages i.e. receiver processes 10K msgs in (on average) xxx ms.
+See below throughput for each of receiver, normaliser, indexer. Each point is 10K messages.
 
 ![Throughput](lat_cons.tsl.png)
 
