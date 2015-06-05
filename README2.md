@@ -45,7 +45,7 @@ Not entirely realistic as super-fast no garbage XML generation component actuall
 
 * EC2 c3.xlarge
     * Total test execution time 550 seconds
-        * Receiver completed in 200 seconds, persisting 1M messages at 5K msgs/sec, each message average #chars 28,858 (148 MB/sec)
+        * Receiver completed in 200 seconds, persisting 1M messages at 5K msgs/sec, each message average #chars 28,858 (148 million chars/sec) 
         * Normaliser completed in 550 seconds, reading, normalising and persisting 1M messages at 1,800 msgs/sec
         * Indexer completes processing in 550 seconds, reading and indexing 1M messages
         * Queryer executes during entire test run, executing approx 2,000 queries, returning a total of 1.25G of data, (1.4M rows - average 700 rows per query), in an average of 220 ms per query
@@ -63,17 +63,23 @@ Not entirely realistic as super-fast no garbage XML generation component actuall
         * Approx 2180 queries, total of 1,634,000 rows, 749 average, avg 1,100 ms per query (because the test takes longer, more queries executed!)
 
 #### Latency test
-Generate XML at a slower rate than throughput test (750 msgs/sec which is about 20MB/sec) so as to reduce load on system and ensure 
-that all components can keep up. 
+Generate XML at a slower rate than throughput test (750 msgs/sec which is about 20 million chars/sec) so as to reduce load on system and ensure that all components can keep up. 
 
 * EC2 c3.xlarge
     * Total test execution time 1350 seconds
-        * Receiver completed in 1340 seconds, persisting 1M messages at 750 msgs/sec, each message average #chars 28,858 (20 MB/sec)
+        * Receiver completed in 1340 seconds, persisting 1M messages at 750 msgs/sec, each message average #chars 28,858 (20 million chars/sec)
         * Normaliser completed in same time, reading, normalising and persisting 1M messages at same rate as receiver
-            * Average latency from msg written by receiver, to normaliser reading it and normalising it is 6ms, with 99% under 22ms
+            * Average latency from msg written by receiver, to normaliser reading it and normalising it is 6ms, with 99% under 22ms 
         * Indexer completes processing in same time, at same rate as receiver
             * Average latency from msg written by normaliser to indexer indexing it is 5ms, with 99% under 9ms
         * Queryer executes during entire test run, executing approx 4,100 queries, returning a total of 3.4G of data, (4M rows - average 970 rows per query), in an average of 260 ms per query
+
+#### Latency test small messages
+Generate small XML messages (955 chars) at a slower rate than throughput test so as to reduce load on system and ensure that all components can keep up. 
+
+* MacBook Pro 4 cores and SSD:
+    * Average latency from msg written by receiver, to normaliser reading it is 10ins with 90% under 15ns and 99% under 43ns
+    * Average latency from msg written by receiver, to normaliser reading it, and parsing XML is 21ns with 90% under 25ns and 99% under 52ns
 
 ##### Throughput
 See below throughput for each of receiver, normaliser, indexer. Each point is 10K messages.
