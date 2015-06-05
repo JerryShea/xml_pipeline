@@ -5,11 +5,11 @@ Receives XML, assigns an ID, and persists to disk together with received timesta
 straight out to disk. Very low latency and very high throughput.
 This job of this component is to "land" incoming XML to disk and make it available for downstream processing pipelines.
 #### Normaliser
-Tails persisted XML file, loads XML, extracts configured subset of individual tag values from the XML, and persists to disk in normalised file. Three versions have been implemented:
+"Tails" persisted XML file, loads XML, extracts configured subset of individual tag values from the XML, and persists to disk in normalised file. Three versions have been implemented:
 
 * JAXB implementation converts the XML to a Java object in memory - this takes the most up-front time but is suitable for very complex and very numerous extractions of tags from XML
 * XOM implementation uses [XOM](www.xom.nu) to execute configured xpaths against XML
-* Custom implementation that makes use of a low latency XML parser and cut-down support for an xpath subset. Low garbage and considerably lower latency and higher throughout than JAXB and XOM impls. This is used for benchmark figures quoted on this page.
+* Custom implementation that makes use of a low latency XML parser and cut-down support for an xpath subset. Low garbage and considerably lower latency and higher throughout than JAXB and XOM impls. This is used for benchmark figures quoted on this page. Further performance optimisation on this component still possible.
 
 #### Indexer
 Tails normalised file and builds an in-memory index of every normalised value.
@@ -69,9 +69,9 @@ Generate XML at a slower rate than throughput test (750 msgs/sec which is about 
     * Total test execution time 1350 seconds
         * Receiver completed in 1340 seconds, persisting 1M messages at 750 msgs/sec, each message average #chars 28,858 (20 million chars/sec)
         * Normaliser completed in same time, reading, normalising and persisting 1M messages at same rate as receiver
-            * Average latency from msg written by receiver, to normaliser reading it and normalising it is 6ms, with 99% under 22ms 
+            * Average latency from msg written by receiver, to normaliser reading it and normalising it is 6ms, with 99% latency under 22ms
         * Indexer completes processing in same time, at same rate as receiver
-            * Average latency from msg written by normaliser to indexer indexing it is 5ms, with 99% under 9ms
+            * Average latency from msg written by normaliser to indexer indexing it is 5ms, with 99% latency under 9ms
         * Queryer executes during entire test run, executing approx 4,100 queries, returning a total of 3.4G of data, (4M rows - average 970 rows per query), in an average of 260 ms per query
 
 #### Latency test small messages

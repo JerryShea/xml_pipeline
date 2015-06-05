@@ -1,5 +1,3 @@
-Or... how to do big data fast
-
 ## How fast?
 Below I describe an XML processing pipeline that can:
 
@@ -15,7 +13,7 @@ into 1.1GB of normalised data and an index of size 500MB, while concurrently exe
 ### Design Principles
 
 * Fast & efficient
-    * Able to absorb significant load on a single box
+    * Able to absorb significant load on a single box - no hadoop etc. cluster required
 * Mechanical sympathy
     * Cache oblivious, streaming architecture
     * Minimise pointer chasing - XML and Java objects backed by byte array
