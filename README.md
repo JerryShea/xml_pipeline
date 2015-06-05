@@ -9,6 +9,8 @@ The test scenario described below (see throughput test in [README2](README2.md))
 indexing of them and executing queries against the index continuously. The test runs in 10 minutes, converting 29G of XML
 into 1.1GB of normalised data and an index of size 500MB, while concurrently executing 2000 queries returning 1.2GB of data.
 
+Above scenario focuses on throughput but this pipeline also exhibits very impressive latency numbers - with messages moving between components typically < 20ns.
+
 ## How does it work?
 ### Design Principles
 

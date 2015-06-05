@@ -26,6 +26,13 @@ Not implemented yet. Will build on JAXB indexer and write XML to relational tabl
 #### Downstream analytics
 Not implemented yet.
 
+#### Latency test small messages
+Generate small XML messages (955 chars) at a slower rate than throughput test so as to reduce load on system and ensure that all components can keep up. 
+
+* MacBook Pro 4 cores and SSD:
+    * Average latency from msg written by receiver, to normaliser reading it is 10ns with 90% under 15ns and 99% under 43ns
+    * Average latency from msg written by receiver, to normaliser reading it, and parsing XML is 21ns with 90% under 25ns and 99% under 52ns
+
 ### Performance
 Test harness uses approx 110 example FpMLs from FpML website, some of which have been increased in size, and values substituted values e.g. tradeId, tradeDate etc. Average size of each XML file is approx 29K. 
 
@@ -73,13 +80,6 @@ Generate XML at a slower rate than throughput test (750 msgs/sec which is about 
         * Indexer completes processing in same time, at same rate as receiver
             * Average latency from msg written by normaliser to indexer indexing it is 5ms, with 99% latency under 9ms
         * Queryer executes during entire test run, executing approx 4,100 queries, returning a total of 3.4G of data, (4M rows - average 970 rows per query), in an average of 260 ms per query
-
-#### Latency test small messages
-Generate small XML messages (955 chars) at a slower rate than throughput test so as to reduce load on system and ensure that all components can keep up. 
-
-* MacBook Pro 4 cores and SSD:
-    * Average latency from msg written by receiver, to normaliser reading it is 10ins with 90% under 15ns and 99% under 43ns
-    * Average latency from msg written by receiver, to normaliser reading it, and parsing XML is 21ns with 90% under 25ns and 99% under 52ns
 
 ##### Throughput
 See below throughput for each of receiver, normaliser, indexer. Each point is 10K messages.
