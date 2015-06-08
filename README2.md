@@ -54,13 +54,13 @@ Not entirely realistic as super-fast no garbage XML generation component actuall
 
 * EC2 c3.xlarge
     * Total test execution time 550 seconds
-        * Receiver completed in 200 seconds, persisting 1M messages at 5K msgs/sec, each message average #chars 28,858 (148 million chars/sec) 
+        * Receiver completed in 200 seconds, persisting 1M messages at 5K msgs/sec, each message average #chars 28,867 (chars range 2,082-1,614,103) (148 million chars/sec) 
         * Normaliser completed in 550 seconds, reading, normalising and persisting 1M messages at 1,800 msgs/sec
         * Indexer completes processing in 550 seconds, reading and indexing 1M messages
         * Queryer executes during entire test run, executing approx 2,000 queries, returning a total of 1.25G of data, (1.4M rows - average 700 rows per query), in an average of 220 ms per query
 * MacBook Pro 4 cores and SSD:
     * Total test execution time 1013 seconds
-        * Receiver completed in 432 seconds, persisting 1M messages at 2,300 msgs/sec, each message average #chars 28,858
+        * Receiver completed in 432 seconds, persisting 1M messages at 2,300 msgs/sec, each message average #chars 28,867 (chars range 2,082-1,614,103)
         * Normaliser completed in 865 seconds, reading, normalising and persisting 1M messages at 1,100 msgs/sec
         * Indexer completes processing in 1013 seconds, reading and indexing 1M messages
         * Queryer executes during entire test run, executing approx 1,800 queries, returning a total of 672,000 rows (average 366 rows per query), in an average of 515 ms per query
@@ -76,7 +76,7 @@ Generate XML at a slower rate than throughput test (750 msgs/sec which is about 
 
 * EC2 c3.xlarge
     * Total test execution time 1350 seconds
-        * Receiver completed in 1340 seconds, persisting 1M messages at 750 msgs/sec, each message average #chars 28,858 (20 million chars/sec)
+        * Receiver completed in 1340 seconds, persisting 1M messages at 750 msgs/sec, each message average #chars 28,867 (chars range 2,082-1,614,103) (20 million chars/sec)
         * Normaliser completed in same time, reading, normalising and persisting 1M messages at same rate as receiver
             * Average latency from msg written by receiver, to normaliser reading it and normalising it is 6ms, with 99% latency under 22ms
         * Indexer completes processing in same time, at same rate as receiver
