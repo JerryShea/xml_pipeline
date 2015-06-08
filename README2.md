@@ -30,10 +30,10 @@ Not implemented yet.
 Generate small XML messages (955 chars) at a slower rate than throughput test so as to reduce load on system and ensure that all components can keep up. 
 
 * MacBook Pro 4 cores and SSD:
-    * Average latency from msg written by receiver, to normaliser reading it is 10ns with 90% under 15ns and 99% under 43ns
-    * Average latency from msg written by receiver, to normaliser reading it, and parsing XML is 21ns with 90% under 25ns and 99% under 52ns
-    * Average latency from msg written by normaliser to indexer reading it is 10ns 
-    * Average latency from msg written by normaliser to indexer reading it and adding to in-memory index is 16ns 
+    * Average latency from msg written by receiver, to normaliser reading it is 9μs with 90% under 10μs and 99% under 15μs
+    * Average latency from msg written by receiver, to normaliser reading it, and parsing XML is 10μs with 90% under 11μs and 99% under 21μs
+    * Average latency from msg written by normaliser to indexer reading it is 10μs 
+    * Average latency from msg written by normaliser to indexer reading it and adding to in-memory index is 16μs 
 
 ### Performance
 Test harness uses approx 110 example FpMLs from FpML website, some of which have been increased in size, and values substituted values e.g. tradeId, tradeDate etc. Average size of each XML file is approx 29K. 
